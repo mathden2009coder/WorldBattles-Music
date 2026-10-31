@@ -15,6 +15,10 @@ final class ClientMusic {
     private static final Map<String, MatchLoopSound> ACTIVE = new ConcurrentHashMap<>();
     private ClientMusic() {}
 
+    static boolean isPlayingMatchMusic() {
+        return !ACTIVE.isEmpty();
+    }
+
     static void handle(String track, boolean start) {
         Minecraft minecraft = Minecraft.getInstance();
         if (!start) {
@@ -24,6 +28,8 @@ final class ClientMusic {
         }
         MatchLoopSound old = ACTIVE.remove(track);
         if (old != null) minecraft.getSoundManager().stop(old);
+        // Cut off an already-playing vanilla background track before starting ours.
+        minecraft.getSoundManager().stop(null, SoundSource.MUSIC);
         ResourceLocation id = new ResourceLocation(WorldBattlesMusic.MODID, track);
         SoundEvent event = BuiltInRegistries.SOUND_EVENT.get(id);
         MatchLoopSound sound = new MatchLoopSound(event, track);
