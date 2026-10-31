@@ -1,0 +1,5 @@
+{
+  "worldbattles": { "sounds": [{ "name": "worldbattlesmusic:music/worldbattles", "stream": true }] },
+  "sandwars": { "sounds": [{ "name": "worldbattlesmusic:music/sandwars", "stream": true }] },
+  "zombies": { "sounds": [{ "name": "worldbattlesmusic:music/zombies", "stream": true }] }
+}
