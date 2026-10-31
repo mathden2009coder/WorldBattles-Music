@@ -3,13 +3,10 @@ plugins {
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
 }
-
 group = 'com.worldbattles'
-version = '1.0.0'
+version = '1.0.1'
 base { archivesName = 'worldbattles-music' }
-
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
-
 minecraft {
     mappings channel: 'official', version: '1.20.1'
     runs {
@@ -22,13 +19,8 @@ minecraft {
         server { args '--nogui' }
     }
 }
-
 repositories { mavenCentral() }
-
-dependencies {
-    minecraft 'net.minecraftforge:forge:1.20.1-47.2.0'
-}
-
+dependencies { minecraft 'net.minecraftforge:forge:1.20.1-47.2.0' }
 jar {
     manifest {
         attributes([
