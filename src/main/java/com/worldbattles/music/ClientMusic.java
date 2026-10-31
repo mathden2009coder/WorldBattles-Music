@@ -90,7 +90,7 @@ final class ClientMusic {
             super(event, SoundSource.MUSIC, RandomSource.create());
             this.looping = true;
             this.delay = 0;
-            this.volume = "worldbattles".equals(track) ? 1.2F : 1.0F;
+            this.volume = "worldbattles".equals(track) ? 1.6F : 1.0F;
             this.pitch = 1.0F;
             this.relative = true;
         }
