@@ -48,7 +48,7 @@ final class ClientMusic {
             System.err.println("[WorldBattlesMusic] Missing sound event: " + id);
             return;
         }
-        MatchLoopSound sound = new MatchLoopSound(event);
+        MatchLoopSound sound = new MatchLoopSound(event, track);
         ACTIVE.put(track, sound);
         Minecraft.getInstance().getSoundManager().play(sound);
     }
@@ -78,7 +78,7 @@ final class ClientMusic {
             ResourceLocation id = new ResourceLocation(WorldBattlesMusic.MODID, track);
             SoundEvent event = BuiltInRegistries.SOUND_EVENT.get(id);
             if (event != null) {
-                MatchLoopSound replacement = new MatchLoopSound(event);
+                MatchLoopSound replacement = new MatchLoopSound(event, track);
                 ACTIVE.put(track, replacement);
                 Minecraft.getInstance().getSoundManager().play(replacement);
             }
@@ -86,11 +86,11 @@ final class ClientMusic {
     }
 
     private static final class MatchLoopSound extends AbstractTickableSoundInstance {
-        MatchLoopSound(SoundEvent event) {
+        MatchLoopSound(SoundEvent event, String track) {
             super(event, SoundSource.MUSIC, RandomSource.create());
             this.looping = true;
             this.delay = 0;
-            this.volume = 1.0F;
+            this.volume = "worldbattles".equals(track) ? 1.2F : 1.0F;
             this.pitch = 1.0F;
             this.relative = true;
         }
